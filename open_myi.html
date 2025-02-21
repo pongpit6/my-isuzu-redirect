@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to My-Isuzu...</title>
+    <script>
+        function openMyIsuzu() {
+            var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            
+            if (/android/i.test(userAgent)) {
+                // ถ้าเป็น Android → ใช้ Intent URL
+                window.location.href = "intent://appointment#Intent;scheme=myi;package=com.tis.myisuzu;end;";
+            } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+                // ถ้าเป็น iOS → ใช้ URL Scheme และ fallback ไป App Store
+                window.location.href = "myi://appointment";
+                setTimeout(function() {
+                    window.location.href = "https://apps.apple.com/th/app/my-isuzu/id1606374874";
+                }, 2000);
+            } else {
+                // ถ้าเปิดจากคอมพิวเตอร์ → ให้ไปที่หน้าเว็บหลักของ Isuzu
+                window.location.href = "https://www.isuzu.com";
+            }
+        }
+    </script>
+</head>
+<body onload="openMyIsuzu()">
+    <p>กำลังเปิดแอป My-Isuzu... หากไม่เปิดอัตโนมัติ กรุณาคลิก <a href="myi://appointment">ที่นี่</a></p>
+</body>
+</html>
