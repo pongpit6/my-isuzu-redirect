@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>กำลังเปิด Facebook...</title>
+  <script>
+    function openFacebookApp() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+      
+      if (/android/i.test(userAgent)) {
+        window.location.href = "fb://facewebmodal/f?href=https://facebook.com";
+      } else if (/iPad|iPhone|iPod/.test(userAgent)) {
+        window.location.href = "fb://profile";
+        setTimeout(function() {
+          window.location.href = "https://facebook.com";
+        }, 2000);
+      } else {
+        window.location.href = "https://facebook.com";
+      }
+    }
+  </script>
+</head>
+<body onload="openFacebookApp()">
+  <p>กำลังเปิดแอป Facebook... หากไม่เปิดอัตโนมัติ กรุณาคลิก <a href="https://facebook.com">ที่นี่</a></p>
+</body>
+</html>
